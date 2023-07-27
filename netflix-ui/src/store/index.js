@@ -16,6 +16,7 @@ const initialState = {
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const TMBD_BASE_URL = process.env.REACT_APP_TMBD_BASE_URL;
+
 export const getGenres = createAsyncThunk("netflix/genres", async () => {
     const {
         data: { genres }

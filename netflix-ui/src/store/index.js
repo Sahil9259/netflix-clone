@@ -16,7 +16,6 @@ const initialState = {
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const TMBD_BASE_URL = process.env.REACT_APP_TMBD_BASE_URL;
-const apiUrl = process.env.REACT_APP_API_BASE_URL;
 export const getGenres = createAsyncThunk("netflix/genres", async () => {
     const {
         data: { genres }
@@ -84,7 +83,7 @@ export const getUsersLikedMovies = createAsyncThunk(
     async (email) => {
         const {
             data: { movies },
-        } = await axios.get(`${apiUrl}/api/user/liked/${email}`);
+        } = await axios.get(`http://localhost:5000/api/user/liked/${email}`);
         return movies;
     }
 );
@@ -94,7 +93,7 @@ export const removeFromLikedMovies = createAsyncThunk(
     async ({ email,movieId }) => {
         const {
             data: { movies },
-        } = await axios.put(`${apiUrl}/api/user/delete`, {
+        } = await axios.put("http://localhost:5000/api/user/delete", {
             email,
             movieId,
         });

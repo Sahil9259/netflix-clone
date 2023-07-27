@@ -18,10 +18,12 @@ mongoose.connect(process.env.MONGODB_URI, {
     console.log("DB Connection Successfull");
     app.listen(PORT, () => {
       console.log(`App is Listening on PORT ${PORT}`);
-  });
+    });
+    
   })
   .catch((err) => {
     console.log(err.message);
   });
-
+  
 app.use("/api/user", userRoutes);
+export default PORT;

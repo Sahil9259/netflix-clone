@@ -3,15 +3,19 @@ import {
     createAsyncThunk,
     createSlice,
 } from "@reduxjs/toolkit";
-import { API_KEY, TMBD_BASE_URL } from "../utils/constant";
+
+// import "dotenv";
+// import { API_KEY, TMBD_BASE_URL } from "../utils/constant";
 import axios from "axios";
 
 const initialState = {
     movies: [],
-    genresLoaded: false,
+    genresLoaded: false, 
     genres: [],
 };
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+const TMBD_BASE_URL = process.env.REACT_APP_TMBD_BASE_URL;
 export const getGenres = createAsyncThunk("netflix/genres", async () => {
     const {
         data: { genres }

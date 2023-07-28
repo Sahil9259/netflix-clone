@@ -5,7 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 
 import axios from "axios";
-import PORT from "../../../netflix-api";
 
 const initialState = {
     movies: [],
@@ -82,7 +81,7 @@ export const getUsersLikedMovies = createAsyncThunk(
     async (email) => {
         const {
             data: { movies },
-        } = await axios.get(`http://localhost:${PORT}/api/user/liked/${email}`);
+        } = await axios.get(`https://netflix-8t4n.onrender.com/api/user/liked/${email}`);
         return movies;
     }
 );
@@ -92,7 +91,7 @@ export const removeFromLikedMovies = createAsyncThunk(
     async ({ email,movieId }) => {
         const {
             data: { movies },
-        } = await axios.put(`http://localhost:${PORT}/api/user/delete`, {
+        } = await axios.put(`https://netflix-8t4n.onrender.com/api/user/delete`, {
             email,
             movieId,
         });

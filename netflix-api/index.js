@@ -26,4 +26,3 @@ mongoose.connect(process.env.MONGODB_URI, {
   });
   
 app.use("/api/user", userRoutes);
-export default PORT;

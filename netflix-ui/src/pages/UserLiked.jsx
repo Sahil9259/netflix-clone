@@ -16,33 +16,42 @@ export default function UserLiked() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState(undefined);
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) {
-      setEmail(currentUser.email);
-    } else navigate("/login");
-  });
-  // useEffect(() => {
-  //   if (email) {
-  //     dispatch(getUsersLikedMovies(email));
-  //   }
-  // }, [email]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    if (email && Array.isArray(movies) && movies.length === 0) {
+    onAuthStateChanged(firebaseAuth, (currentUser) => {
+      if (currentUser) {
+        setEmail(currentUser.email);
+      } else {
+        navigate("/login");
+      }
+      setIsLoading(false);
+    });
+  }, [navigate]);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      setIsScrolled(window.pageYOffset === 0 ? false : true);
+    };
+
+    return () => {
+      window.onscroll = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && email && Array.isArray(movies) && movies.length === 0) {
       dispatch(getUsersLikedMovies(email));
     }
-  }, [email, movies, dispatch]);
+  }, [isLoading, email, movies, dispatch]);
 
-  window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true);
-    return () => (window.onscroll = null);
-  };
   return (
     <Container>
       <Navbar isScrolled={isScrolled} />
       <div className="content flex column">
         <h1>My List</h1>
         <div className="grid flex">
-          {movies && Array.isArray(movies) ? (
+          {movies !== null && Array.isArray(movies) && movies.length > 0 ? (
             movies.map((movie, index) => (
               <Card
                 movieData={movie}

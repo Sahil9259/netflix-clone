@@ -82,6 +82,8 @@ export const getUsersLikedMovies = createAsyncThunk(
         const {
             data: { movies },
         } = await axios.get(`https://netflix-8t4n.onrender.com/api/user/liked/${email}`);
+        console.log(email);
+        console.log(movies)
         return movies;
     }
 );

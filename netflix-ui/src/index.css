@@ -17,9 +17,9 @@ body {
 html,body{
   overflow-x: hidden;
 }
-body::-webkit-scrollbar{
+/* body::-webkit-scrollbar{
   display: none;
-}
+} */
 .flex{
   display: flex;
 }

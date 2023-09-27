@@ -21,7 +21,8 @@ export default function Login() {
       const { email, password } = formValues;
       await signInWithEmailAndPassword(firebaseAuth, email, password);
     } catch (err) {
-      console.log(err);
+      alert(err);
+      // console.log(err);
     }
   };
 
@@ -36,7 +37,7 @@ export default function Login() {
         <div className="form-container flex a-center j-center">
           <div className="form flex column a-center j-center">
             <div className="title">
-              <h3>Login</h3>
+              <h2>Sign In</h2>
             </div>
             <div className="container flex column">
             <input
@@ -63,7 +64,7 @@ export default function Login() {
               name="password"
               value={formValues.password}
             />
-            <button onClick={handleLogIn}>Login</button>
+            <button onClick={handleLogIn}>Sign In</button>
             </div>
           </div>
         </div>
